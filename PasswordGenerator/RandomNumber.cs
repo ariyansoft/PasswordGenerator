@@ -16,5 +16,13 @@ namespace PasswordGenerator
             var rand = new Random();
             return rand.Next(min, max);
         }
+
+        public static byte[] GenerateNextByte(int max)
+        {
+            var b = new byte[max];
+            var rnd = new Random();
+            rnd.NextBytes(b);
+            return b;
+        }
     }
 }
