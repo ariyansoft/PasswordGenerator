@@ -27,5 +27,16 @@ namespace PasswordGenerator
 
             return builder.ToString();
         }
+
+        public string SetRandomPassword(int firstLetters, int minNum, int maxNum, int LastLetters)
+        {
+            var builder = new StringBuilder();
+            // First lower case
+            builder.Append(RandomString(firstLetters, true));
+            builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+            // last upper case
+            builder.Append(RandomString(LastLetters, false));
+            return builder.ToString();
+        }
     }
 }
