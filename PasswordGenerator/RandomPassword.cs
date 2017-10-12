@@ -28,14 +28,14 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public string SetRandomPassword(int firstLetters, int minNum, int maxNum, int LastLetters)
+        public string SetRandomPassword(int firstLetters, int minNum, int maxNum, int lastLetters)
         {
             var builder = new StringBuilder();
             // First lower case
             builder.Append(RandomString(firstLetters, true));
             builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
             // last upper case
-            builder.Append(RandomString(LastLetters, false));
+            builder.Append(RandomString(lastLetters, false));
             return builder.ToString();
         }
     }
