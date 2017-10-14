@@ -31,7 +31,7 @@ namespace PasswordGenerator
         public string SetRandomPassword(int firstLetters, int minNum, int maxNum, int lastLetters)
         {
             var builder = new StringBuilder();
-            // First lower case
+            // first lower case
             builder.Append(RandomString(firstLetters, true));
             builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
             // last upper case
