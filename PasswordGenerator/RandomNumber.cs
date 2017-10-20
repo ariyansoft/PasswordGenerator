@@ -7,7 +7,6 @@ namespace PasswordGenerator
 {
     /// <summary>
     /// By: Ahmadreza mohebbi
-    /// Project Manager at AriyanSoft
     /// </summary>
     public class RandomNumber
     {
