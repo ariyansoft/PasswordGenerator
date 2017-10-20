@@ -10,10 +10,17 @@ namespace PasswordGenerator
     /// </summary>
     public class RandomNumber
     {
+        protected static Random rand = new Random();
         public static int GenerateNumber(int min, int max)
         {
-            var rand = new Random();
             return rand.Next(min, max);
+        }
+
+        public static string GenerateNonAlphanumeric(int length)
+        {
+            var chars = @"!@#$%^&*+-/\";
+            var result = new string(Enumerable.Repeat(chars, length).Select(s => s[rand.Next(s.Length)]).ToArray());
+            return result;
         }
 
         public static byte[] GenerateNextByte(int max)
