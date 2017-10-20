@@ -12,7 +12,7 @@ namespace ChackPassword
         {
             var PasswordMode = (int)RandomPassword.Mode.UpperNumberLower;
             var retPass = RandomPassword.SetPassword(PasswordMode, 5, 1, 200, 5);
-            Console.WriteLine(retPass);
+            Console.WriteLine(retPass + RandomNumber.GenerateNonAlphanumeric(2));
         }
     }
 }
