@@ -21,24 +21,30 @@ namespace PasswordGenerator
 
         public static string SetPassword(int Mode, int param1, int param2, int param3, int param4)
         {
-            var retPassStr = string.Empty;
-            switch (Mode)
+            try
             {
-                case 1:
-                    retPassStr = SetLowerNumberUpper(param1, param2, param3, param4);
-                    break;
-                case 2:
-                    retPassStr = SetUpperNumberLower(param1, param2, param3, param4);
-                    break;
-                case 3:
-                    retPassStr = SetNumberUpperLower(param1, param2, param3, param4);
-                    break;
-                case 4:
-                    retPassStr = SetNumberLowerUpper(param1, param2, param3, param4);
-                    break;
+                var retPassStr = string.Empty;
+                switch (Mode)
+                {
+                    case 1:
+                        retPassStr = SetLowerNumberUpper(param1, param2, param3, param4);
+                        break;
+                    case 2:
+                        retPassStr = SetUpperNumberLower(param1, param2, param3, param4);
+                        break;
+                    case 3:
+                        retPassStr = SetNumberUpperLower(param1, param2, param3, param4);
+                        break;
+                    case 4:
+                        retPassStr = SetNumberLowerUpper(param1, param2, param3, param4);
+                        break;
+                }
+                return retPassStr;
             }
-
-            return retPassStr;
+            catch(Exception)
+            {
+                throw new ArgumentException("Notice the values of the parameters");
+            }
         }
 
         public static string SetLowerNumberUpper(int firstLetters, int minNum, int maxNum, int lastLetters)
