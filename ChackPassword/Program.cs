@@ -10,8 +10,8 @@ namespace ChackPassword
     {
         static void Main(string[] args)
         {
-            var PasswordMode = (int)RandomPassword.Mode.NumberUpperLower;
-            var retPass = RandomPassword.SetPassword(PasswordMode, 2, 1, 20, 2);
+            var PasswordMode = (int)RandomPassword.Mode.UpperNumberLower;
+            var retPass = RandomPassword.SetPassword(PasswordMode, 5, 1, 200, 5);
             Console.WriteLine(retPass);
         }
     }
