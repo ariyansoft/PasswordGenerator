@@ -23,23 +23,23 @@ namespace PasswordGenerator
         {
             try
             {
-                var retPassStr = string.Empty;
+                var PassStr = string.Empty;
                 switch (Mode)
                 {
                     case 1:
-                        retPassStr = SetLowerNumberUpper(param1, param2, param3, param4);
+                        PassStr = SetLowerNumberUpper(param1, param2, param3, param4);
                         break;
                     case 2:
-                        retPassStr = SetUpperNumberLower(param1, param2, param3, param4);
+                        PassStr = SetUpperNumberLower(param1, param2, param3, param4);
                         break;
                     case 3:
-                        retPassStr = SetNumberUpperLower(param1, param2, param3, param4);
+                        PassStr = SetNumberUpperLower(param1, param2, param3, param4);
                         break;
                     case 4:
-                        retPassStr = SetNumberLowerUpper(param1, param2, param3, param4);
+                        PassStr = SetNumberLowerUpper(param1, param2, param3, param4);
                         break;
                 }
-                return retPassStr;
+                return PassStr;
             }
             catch(Exception)
             {
@@ -47,7 +47,7 @@ namespace PasswordGenerator
             }
         }
 
-        public static string SetLowerNumberUpper(int firstLetters, int minNum, int maxNum, int lastLetters)
+        protected static string SetLowerNumberUpper(int firstLetters, int minNum, int maxNum, int lastLetters)
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, true));
@@ -56,7 +56,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string SetUpperNumberLower(int firstLetters, int minNum, int maxNum, int lastLetters)
+        protected static string SetUpperNumberLower(int firstLetters, int minNum, int maxNum, int lastLetters)
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, false));
@@ -65,7 +65,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string SetNumberUpperLower(int minNum, int maxNum, int firstLetters, int lastLetters)
+        protected static string SetNumberUpperLower(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
             var builder = new StringBuilder();            
             builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
@@ -74,7 +74,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string SetNumberLowerUpper(int minNum, int maxNum, int firstLetters, int lastLetters)
+        protected static string SetNumberLowerUpper(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
             var builder = new StringBuilder();
             builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
@@ -83,7 +83,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string RandomString(int size, bool lowerCase)
+        protected static string RandomString(int size, bool lowerCase)
         {
             var builder = new StringBuilder();
             var random = new Random();
