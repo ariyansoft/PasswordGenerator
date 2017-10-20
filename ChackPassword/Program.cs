@@ -11,8 +11,8 @@ namespace ChackPassword
         static void Main(string[] args)
         {
             var PasswordMode = (int)RandomPassword.Mode.LowerNumberUpper;
-            RandomPassword.SetPassword(PasswordMode, 2, 1, 4, 3);
-            Console.WriteLine()
+            var retPass = RandomPassword.SetPassword(PasswordMode, 2, 1, 4, 3);
+            Console.WriteLine(retPass);
         }
     }
 }
