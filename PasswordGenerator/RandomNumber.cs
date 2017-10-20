@@ -26,8 +26,7 @@ namespace PasswordGenerator
         public static byte[] GenerateNextByte(int max)
         {
             var b = new byte[max];
-            var rnd = new Random();
-            rnd.NextBytes(b);
+            rand.NextBytes(b);
             return b;
         }
     }
