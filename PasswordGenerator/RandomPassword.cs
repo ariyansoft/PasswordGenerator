@@ -51,8 +51,15 @@ namespace PasswordGenerator
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, true));
-            builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-            builder.Append(RandomString(lastLetters, false));
+            if(minNum > maxNum)
+              {
+                 return "The second parameter of the third parameter must be smaller";                    
+              }
+              else
+              {
+                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                 builder.Append(RandomString(lastLetters, false));
+              }            
             return builder.ToString();
         }
 
@@ -60,26 +67,48 @@ namespace PasswordGenerator
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, false));
-            builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-            builder.Append(RandomString(lastLetters, true));
+            if(minNum > maxNum)
+              {
+                 return "The second parameter of the third parameter must be smaller";                    
+              }
+            else
+              {
+                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                 builder.Append(RandomString(lastLetters, true));
+              }          
             return builder.ToString();
         }
 
         protected static string SetNumberUpperLower(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
-            var builder = new StringBuilder();            
-            builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-            builder.Append(RandomString(firstLetters, false));
-            builder.Append(RandomString(lastLetters, true));
+            var builder = new StringBuilder();     
+            if(minNum > maxNum)
+              {
+                 return "The first parameter of the second parameter must be smaller";  
+              }
+            else
+                {
+                    builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                    builder.Append(RandomString(firstLetters, false));
+                    builder.Append(RandomString(lastLetters, true));
+                }
+            
             return builder.ToString();
         }
 
         protected static string SetNumberLowerUpper(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
             var builder = new StringBuilder();
-            builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-            builder.Append(RandomString(firstLetters, true));
-            builder.Append(RandomString(lastLetters, false));
+            if(minNum > maxNum)
+              {
+                 return "The first parameter of the second parameter must be smaller";  
+              }
+            else
+              {
+                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                 builder.Append(RandomString(firstLetters, true));
+                 builder.Append(RandomString(lastLetters, false));
+              }            
             return builder.ToString();
         }
 
