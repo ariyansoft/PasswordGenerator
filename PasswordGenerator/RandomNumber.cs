@@ -20,12 +20,6 @@ namespace PasswordGenerator
             var b = new byte[max];
             rand.NextBytes(b);
             return b;
-        }
-        public static string GenerateNonAlphanumeric(int length)
-        {
-            var chars = @"!@#$%^&*+-/\";
-            var result = new string(Enumerable.Repeat(chars, length).Select(s => s[rand.Next(s.Length)]).ToArray());
-            return result;
-        }
+        }        
     }
 }

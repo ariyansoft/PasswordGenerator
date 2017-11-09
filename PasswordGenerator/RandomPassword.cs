@@ -19,6 +19,8 @@ namespace PasswordGenerator
             LowerNumberUpper = 1, UpperNumberLower, NumberUpperLower, NumberLowerUpper
         };
 
+        protected static Random rand = new Random();
+
         public static string SetPassword(int Mode, int param1, int param2, int param3, int param4)
         {
             try
@@ -100,15 +102,15 @@ namespace PasswordGenerator
         {
             var builder = new StringBuilder();
             if(minNum > maxNum)
-              {
+             {
                  return "The first parameter of the second parameter must be smaller";  
-              }
+             }
             else
-              {
+             {
                  builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
                  builder.Append(RandomString(firstLetters, true));
                  builder.Append(RandomString(lastLetters, false));
-              }            
+             }            
             return builder.ToString();
         }
 
@@ -127,6 +129,38 @@ namespace PasswordGenerator
                 return builder.ToString().ToLower();
 
             return builder.ToString();
+        }
+
+        public static string ShufflePassword(int length)
+        {
+            var result = string.Empty;
+            var Nummeric = "1234567890";
+            var CapsChar = "ABCDEFGHIJKLMNOPQRTUVWXYZ";
+            var SamllChar = "abcdefghijklmnopqrstuvwxyz";
+            var NonAlphanumeric = @"!@#$%^&*+-/\";
+
+            if(length > 6)
+            {
+                string NummericShuffle = new string(Nummeric.OrderBy(r => rand.Next()).ToArray());
+                string CapsShuffle = new string(CapsChar.OrderBy(r => rand.Next()).ToArray());
+                string SamllShuffle = new string(SamllChar.OrderBy(r => rand.Next()).ToArray());
+                string NonAlphaShuffle = new string(NonAlphanumeric.OrderBy(r => rand.Next()).ToArray());
+
+                var MixString = NummericShuffle + CapsShuffle + SamllShuffle + NonAlphaShuffle;
+                string Shuffle = new string(MixString.OrderBy(r => rand.Next()).ToArray());
+                result = new string(Enumerable.Repeat(Shuffle, length).Select(s => s[rand.Next(s.Length)]).ToArray());
+            }
+            else            
+                return "The password length must be at least 6 characters long";
+            
+            return result;
+        }
+
+        public static string GenerateNonAlphanumeric(int length)
+        {
+            var chars = @"!@#$%^&*+-/\";
+            var result = new string(Enumerable.Repeat(chars, length).Select(s => s[rand.Next(s.Length)]).ToArray());
+            return result;
         }
     }
 }
