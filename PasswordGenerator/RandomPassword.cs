@@ -139,7 +139,7 @@ namespace PasswordGenerator
             var SamllChar = "abcdefghijklmnopqrstuvwxyz";
             var NonAlphanumeric = @"!@#$%^&*+-/\";
 
-            if(length > 6)
+            if(length >= 6)
             {
                 string NummericShuffle = new string(Nummeric.OrderBy(r => rand.Next()).ToArray());
                 string CapsShuffle = new string(CapsChar.OrderBy(r => rand.Next()).ToArray());
