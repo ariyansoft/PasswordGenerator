@@ -14,7 +14,7 @@ namespace ChackPassword
             //var retPass = RandomPassword.SetPassword(PasswordMode, 5, 1, 200, 5);
             //Console.WriteLine(retPass + RandomNumber.GenerateNonAlphanumeric(2));
             Console.WriteLine();
-            var ShufflePass = RandomPassword.ShufflePassword(20);
+            var ShufflePass = RandomPassword.ShufflePassword(50);
             Console.WriteLine(ShufflePass);
         }
     }
