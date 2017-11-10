@@ -43,7 +43,7 @@ namespace PasswordGenerator
                 }
                 return PassStr;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new ArgumentException("Notice the values of the parameters");
             }
@@ -53,15 +53,15 @@ namespace PasswordGenerator
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, true));
-            if(minNum > maxNum)
-              {
-                 return "The second parameter of the third parameter must be smaller";                    
-              }
-              else
-              {
-                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-                 builder.Append(RandomString(lastLetters, false));
-              }            
+            if (minNum > maxNum)
+            {
+                return "The second parameter of the third parameter must be smaller";
+            }
+            else
+            {
+                builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                builder.Append(RandomString(lastLetters, false));
+            }
             return builder.ToString();
         }
 
@@ -69,48 +69,48 @@ namespace PasswordGenerator
         {
             var builder = new StringBuilder();
             builder.Append(RandomString(firstLetters, false));
-            if(minNum > maxNum)
-              {
-                 return "The second parameter of the third parameter must be smaller";                    
-              }
+            if (minNum > maxNum)
+            {
+                return "The second parameter of the third parameter must be smaller";
+            }
             else
-              {
-                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-                 builder.Append(RandomString(lastLetters, true));
-              }          
+            {
+                builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                builder.Append(RandomString(lastLetters, true));
+            }
             return builder.ToString();
         }
 
         protected static string SetNumberUpperLower(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
-            var builder = new StringBuilder();     
-            if(minNum > maxNum)
-              {
-                 return "The first parameter of the second parameter must be smaller";  
-              }
+            var builder = new StringBuilder();
+            if (minNum > maxNum)
+            {
+                return "The first parameter of the second parameter must be smaller";
+            }
             else
-                {
-                    builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-                    builder.Append(RandomString(firstLetters, false));
-                    builder.Append(RandomString(lastLetters, true));
-                }
-            
+            {
+                builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                builder.Append(RandomString(firstLetters, false));
+                builder.Append(RandomString(lastLetters, true));
+            }
+
             return builder.ToString();
         }
 
         protected static string SetNumberLowerUpper(int minNum, int maxNum, int firstLetters, int lastLetters)
         {
             var builder = new StringBuilder();
-            if(minNum > maxNum)
-             {
-                 return "The first parameter of the second parameter must be smaller";  
-             }
+            if (minNum > maxNum)
+            {
+                return "The first parameter of the second parameter must be smaller";
+            }
             else
-             {
-                 builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
-                 builder.Append(RandomString(firstLetters, true));
-                 builder.Append(RandomString(lastLetters, false));
-             }            
+            {
+                builder.Append(RandomNumber.GenerateNumber(minNum, maxNum));
+                builder.Append(RandomString(firstLetters, true));
+                builder.Append(RandomString(lastLetters, false));
+            }
             return builder.ToString();
         }
 
@@ -131,7 +131,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string ShufflePassword(int length)
+        public static string ShufflePassword(int PassMinLen, int length)
         {
             var result = string.Empty;
             var Nummeric = "1234567890";
@@ -139,7 +139,7 @@ namespace PasswordGenerator
             var SamllChar = "abcdefghijklmnopqrstuvwxyz";
             var NonAlphanumeric = @"!@#$%^&*+-/\";
 
-            if(length >= 6)
+            if (length >= PassMinLen)
             {
                 string NummericShuffle = new string(Nummeric.OrderBy(r => rand.Next()).ToArray());
                 string CapsShuffle = new string(CapsChar.OrderBy(r => rand.Next()).ToArray());
@@ -150,9 +150,9 @@ namespace PasswordGenerator
                 string Shuffle = new string(MixString.OrderBy(r => rand.Next()).ToArray());
                 result = new string(Enumerable.Repeat(Shuffle, length).Select(s => s[rand.Next(s.Length)]).ToArray());
             }
-            else            
-                return "The password length must be at least 6 characters long";
-            
+            else
+                return "The password length must be at least " + PassMinLen + " characters long";
+
             return result;
         }
 
