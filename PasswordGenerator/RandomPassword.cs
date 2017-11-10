@@ -16,7 +16,7 @@ namespace PasswordGenerator
             /// Lower: lower case
             /// Upper: upper case
             /// </summary>
-            LowerNumberUpper = 1, UpperNumberLower, NumberUpperLower, NumberLowerUpper
+            ShufflePassword = 1, LowerNumberUpper, UpperNumberLower, NumberUpperLower, NumberLowerUpper, NonAlphanumeric
         };
 
         protected static Random rand = new Random();
@@ -29,16 +29,22 @@ namespace PasswordGenerator
                 switch (Mode)
                 {
                     case 1:
-                        PassStr = SetLowerNumberUpper(param1, param2, param3, param4);
+                        PassStr = ShufflePassword(param1, param2);
                         break;
                     case 2:
-                        PassStr = SetUpperNumberLower(param1, param2, param3, param4);
+                        PassStr = SetLowerNumberUpper(param1, param2, param3, param4);
                         break;
                     case 3:
-                        PassStr = SetNumberUpperLower(param1, param2, param3, param4);
+                        PassStr = SetUpperNumberLower(param1, param2, param3, param4);
                         break;
                     case 4:
+                        PassStr = SetNumberUpperLower(param1, param2, param3, param4);
+                        break;
+                    case 5:
                         PassStr = SetNumberLowerUpper(param1, param2, param3, param4);
+                        break;
+                    case 6:
+                        PassStr = GenerateNonAlphanumeric(param1);
                         break;
                 }
                 return PassStr;
@@ -131,7 +137,7 @@ namespace PasswordGenerator
             return builder.ToString();
         }
 
-        public static string ShufflePassword(int PassMinLen, int length)
+        protected static string ShufflePassword(int PassMinlength, int length)
         {
             var result = string.Empty;
             var Nummeric = "1234567890";
@@ -139,7 +145,7 @@ namespace PasswordGenerator
             var SamllChar = "abcdefghijklmnopqrstuvwxyz";
             var NonAlphanumeric = @"!@#$%^&*+-/\";
 
-            if (length >= PassMinLen)
+            if (length >= PassMinlength)
             {
                 string NummericShuffle = new string(Nummeric.OrderBy(r => rand.Next()).ToArray());
                 string CapsShuffle = new string(CapsChar.OrderBy(r => rand.Next()).ToArray());
@@ -151,12 +157,12 @@ namespace PasswordGenerator
                 result = new string(Enumerable.Repeat(Shuffle, length).Select(s => s[rand.Next(s.Length)]).ToArray());
             }
             else
-                return "The password length must be at least " + PassMinLen + " characters long";
+                return "The password length must be at least " + PassMinlength + " characters long";
 
             return result;
         }
 
-        public static string GenerateNonAlphanumeric(int length)
+        protected static string GenerateNonAlphanumeric(int length)
         {
             var chars = @"!@#$%^&*+-/\";
             var result = new string(Enumerable.Repeat(chars, length).Select(s => s[rand.Next(s.Length)]).ToArray());
